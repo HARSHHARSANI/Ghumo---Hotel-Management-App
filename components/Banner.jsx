@@ -1,4 +1,5 @@
 "use client";
+import Link from "next/link";
 const Banner = () => {
   return (
     <div className="bg-gradient-to-r from-red-600 to-red-400 h-60">
@@ -22,8 +23,12 @@ const Banner = () => {
             className="  h-16 outline-none px-3 text-lg  col-span-1"
             placeholder="Search ..."
           />
-          <button className="h-16 px-3 py-3 col-span-1 bg-green-400 hover:cursor-pointer hover:bg-green-600 text-white text-xl">
-            Search
+          <button
+            className="h-16 px-3 py-3 col-span-1 bg-green-400 hover:cursor-pointer hover:bg-green-600 text-white text-xl"
+            type="submit"
+            // onClick={() => Router.push("/hotels")}
+          >
+            <Link href={"/hotels"}>Search</Link>
           </button>
         </div>
         <div className="flex mx-20 my-6">
