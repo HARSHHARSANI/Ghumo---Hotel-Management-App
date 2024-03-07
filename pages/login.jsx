@@ -1,5 +1,6 @@
 import Head from "next/head";
 import Image from "next/image";
+import Link from "next/link";
 import React from "react";
 
 const countryCodes = [
@@ -258,7 +259,7 @@ const Login = () => {
             Sign up & Get 500 OYO Money
           </div>
           <div className="w-102">
-            <h1 className="text-3xl bg-white text-black px-6 py-8 font-bold pb-10">
+            <h1 className="text-3xl bg-white text-black px-6 py-4 font-bold pb-10">
               Login / Signup
             </h1>
             <p className="bg-white text-black px-6">
@@ -277,7 +278,7 @@ const Login = () => {
                 <input
                   type="text"
                   className="w-60 ml-2 h-8 outline-none border-gray-400 border-2 text-black  "
-                  placeholder="Enter phone number"
+                  placeholder="   Enter phone number"
                 />
               </div>
             </div>
@@ -285,14 +286,14 @@ const Login = () => {
               <button className="px-4 py-2 bg-gray-400 mt-4 ml-6 w-48 font-bold">
                 Verify Number
               </button>
-
               <p className="text-black px-6 py-2 font-bold pb-10 mb-10">
                 Prefer To signIn with Password instead ?{" "}
-                <a href="/" style={{ color: "red" }}>
+                <Link href={"/loginwithemail"} className="text-red-500">
                   Click here
-                </a>
+                </Link>
               </p>
-              <p className="text-black px-6 py-2 font-bold ">Or Sign in as</p>
+              <hr style={{ marginTop: "0" }} />{" "}
+              <p className="text-black px-6 py-2 font-bold  ">Or Signin as</p>
               <div className="flex mb-6 py-4 pb-8">
                 <button className="text-black bg-white px-8 font-bold border-r-2  ">
                   Travel Agent
