@@ -12,6 +12,7 @@ const Header4 = () => {
             width={200}
             height={200}
             className="h-24 w-24 rounded-xl bg-transparent"
+            alt="fire"
           />
         </div>
         <div className="items-center mt-5 text-xl">

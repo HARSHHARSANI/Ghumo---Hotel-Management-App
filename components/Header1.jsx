@@ -2,8 +2,15 @@ import Image from "next/image";
 import React from "react";
 import Block from "./Block";
 import Link from "next/link";
+import Cookies from "js-cookie";
 
 const Header1 = () => {
+  let auth;
+  if (typeof window !== "undefined") {
+    auth = Cookies.get("user");
+  }
+
+  const handleLogout = () => {};
   return (
     <div className=" flex h-24 px-10 border-b-2 border-gray-300  items-center justify-between">
       <Image
@@ -30,9 +37,17 @@ const Header1 = () => {
             height={100}
             className="h-20  w-20"
           />{" "}
-          <Link href={"/login"}>
-            <h3 className=" font-bold mr-4">Login / Signup</h3>
-          </Link>
+          {auth ? (
+            <Link href={"/login"}>
+              <h3 className=" font-bold mr-4" onClick={handleLogout}>
+                Logout
+              </h3>
+            </Link>
+          ) : (
+            <Link href={"/login"}>
+              <h3 className=" font-bold mr-4">Login / Signup</h3>
+            </Link>
+          )}
         </div>
       </div>
     </div>

@@ -22,6 +22,7 @@ const Home = () => {
             src={"/banner1.avif"}
             width={200}
             height={200}
+            alt="banner"
             className="w-full h-80"
           />
         </div>
@@ -31,6 +32,7 @@ const Home = () => {
             width={200}
             height={200}
             className="w-full h-40 mt-16"
+            alt="banner"
           />
         </div>{" "}
         <Header4 />

@@ -1,9 +1,39 @@
+"use client";
 import Head from "next/head";
 import Image from "next/image";
 import Link from "next/link";
-import React from "react";
+import React, { useState } from "react";
+import axios from "axios";
+import Cookies from "js-cookie";
+import { useRouter } from "next/router";
 
 const Login = () => {
+  const [name, setName] = useState("");
+  const [password, setPassword] = useState("");
+  const [email, setEmail] = useState("");
+  const [login, setLogin] = useState(false);
+  const router = useRouter();
+
+  const handleSignup = async () => {
+    if (!email || !password || !name) {
+      alert("All Fields Are Required");
+      return;
+    }
+    setLogin(false);
+    console.log(name, email, password);
+
+    const response = await axios.post("/api/user/register", {
+      name,
+      email,
+      password,
+    });
+
+    if (response?.data) {
+      Cookies.set("user", response.data.token);
+      router.push("/");
+    }
+  };
+
   return (
     <div className="relative h-screen">
       <Head>
@@ -15,6 +45,7 @@ const Login = () => {
           layout="fill"
           objectFit="cover"
           className="z-0"
+          alt="background"
         />
       </div>
       <div className="flex text-white ">
@@ -24,6 +55,7 @@ const Login = () => {
             width={200}
             height={200}
             className="h-24 w-40 ml-10 "
+            alt="background"
           />
         </div>
         <div
@@ -55,16 +87,30 @@ const Login = () => {
               Login / Signup
             </h1>
             <p className="bg-white text-black px-6">
-              Please enter Your phone number to continue
+              Please enter Your Email and Password to continue
             </p>
             <div className="flex bg-white ">
               <div className=" items-center mt-4">
                 <div className="mx-4">
                   {" "}
+                  {login ? (
+                    ""
+                  ) : (
+                    <div>
+                      {" "}
+                      <input
+                        type="text"
+                        className="w-60 ml-2 h-8 outline-none border-gray-400 border-4 py-4 text-black  mb-2"
+                        placeholder="   Enter phone Name"
+                        onChange={(e) => setName(e.target.value)}
+                      />{" "}
+                    </div>
+                  )}
                   <input
                     type="text"
                     className="w-60 ml-2 h-8 outline-none border-gray-400 border-4 py-4 text-black  "
                     placeholder="   Enter phone Email"
+                    onChange={(e) => setEmail(e.target.value)}
                   />
                 </div>
 
@@ -73,19 +119,23 @@ const Login = () => {
                     type="text"
                     className="w-60 ml-2 h-8 outline-none border-gray-400 border-4 py-4 text-black  "
                     placeholder="   Enter phone Password"
+                    onChange={(e) => setPassword(e.target.value)}
                   />
                 </div>
               </div>
             </div>
             <div className="bg-white">
-              <button className="px-4 py-2 bg-gray-400 mt-4 ml-6 w-48 font-bold">
-                Login
+              <button
+                className="px-4 py-2 bg-red-600 mt-4 ml-6 w-60 font-bold"
+                onClick={handleSignup}
+              >
+                Signup
               </button>
               <p className="text-black px-6 py-2 font-bold pb-10 mb-6">
-                Prefer To signIn with Phone Number instead ?{" "}
+                Already Have a Account{" "}
                 <Link href={"/login"} className="text-red-500">
                   {" "}
-                  Click here
+                  login here
                 </Link>
               </p>
               <hr style={{ marginTop: "0" }} />{" "}

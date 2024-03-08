@@ -8,6 +8,7 @@ const SingleHotelPage = () => {
         width={2000}
         height={2000}
         className="w-full h-96 mb-5 mx-auto mt-10 "
+        alt="hotel"
       />
       <div className="">
         <h3 className="text-3xl font-bold">
