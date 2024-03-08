@@ -1,6 +1,8 @@
 "use client";
 import Link from "next/link";
+import { useRouter } from "next/router";
 const Banner = () => {
+  const router = useRouter();
   return (
     <div className="bg-gradient-to-r from-red-600 to-red-400 h-60">
       <div className="p-5">
@@ -26,9 +28,9 @@ const Banner = () => {
           <button
             className="h-16 px-3 py-3 col-span-1 bg-green-400 hover:cursor-pointer hover:bg-green-600 text-white text-xl"
             type="submit"
-            // onClick={() => Router.push("/hotels")}
+            onClick={() => router.push("/hotels?location=mumbai")}
           >
-            <Link href={"/hotels"}>Search</Link>
+            Search
           </button>
         </div>
         <div className="flex mx-20 my-6">

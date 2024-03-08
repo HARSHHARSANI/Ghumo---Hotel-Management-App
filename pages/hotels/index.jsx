@@ -1,15 +1,31 @@
 import Header1 from "@/components/Header1";
 import SingleHotel from "@/components/SingleHotel";
+import axios from "axios";
 
-const Hotels = () => {
+export async function getServerSideProps(ctx) {
+  console.log(ctx.query);
+  const res = await axios.get(
+    `http://localhost:3000/api/hotels?location=${ctx.query.location}`
+  );
+  const data = res.data;
+  return {
+    props: {
+      hotels: data,
+    },
+  };
+}
+
+const Hotels = ({ hotels }) => {
   return (
     <>
       <Header1 />
-      <div className="m-5">
-        <SingleHotel img={"/hotel.jpg"} />
-        <SingleHotel img={"/hotel3.jpg"} />
-        <SingleHotel img={"/hotel2.jpg"} />
-      </div>
+      {hotels
+        ? hotels.map((hotel) => (
+            <div className="m-5" key={hotel._id}>
+              <SingleHotel hotel={hotel} />
+            </div>
+          ))
+        : ""}
     </>
   );
 };

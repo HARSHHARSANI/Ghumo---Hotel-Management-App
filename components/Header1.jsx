@@ -1,16 +1,28 @@
+"use client";
 import Image from "next/image";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Block from "./Block";
 import Link from "next/link";
 import Cookies from "js-cookie";
-
+import { useRouter } from "next/router";
 const Header1 = () => {
-  let auth;
-  if (typeof window !== "undefined") {
-    auth = Cookies.get("user");
-  }
+  const [auth, setAuth] = useState(false); // State to manage authentication
 
-  const handleLogout = () => {};
+  useEffect(() => {
+    // Check if user is authenticated when component mounts
+    const user = Cookies.get("user");
+    if (user) {
+      setAuth(true);
+    }
+  }, []);
+
+  const router = useRouter();
+
+  const handleLogout = () => {
+    Cookies.remove("user");
+    setAuth(false); // Update authentication status
+    router.push("/");
+  };
   return (
     <div className=" flex h-24 px-10 border-b-2 border-gray-300  items-center justify-between">
       <Image
@@ -31,18 +43,19 @@ const Header1 = () => {
         <Block title={"0124-6201611"} para={"Call us to Book Now"} />
         <div className="flex items-center px-3 ">
           <Image
-            src={`/logo.png`}
+            src={`/profilepic.jpg`}
             alt="oyologo"
             width={200}
             height={100}
-            className="h-20  w-20"
+            className="h-16 mr-4 w-16 rounded-full"
           />{" "}
           {auth ? (
-            <Link href={"/login"}>
-              <h3 className=" font-bold mr-4" onClick={handleLogout}>
-                Logout
-              </h3>
-            </Link>
+            <h3
+              className=" font-bold mr-4 cursor-pointer"
+              onClick={handleLogout}
+            >
+              Logout
+            </h3>
           ) : (
             <Link href={"/login"}>
               <h3 className=" font-bold mr-4">Login / Signup</h3>
