@@ -10,6 +10,7 @@ import Head from "next/head";
 import { useEffect, useState } from "react";
 import Cookies from "js-cookie";
 import { useRouter } from "next/router";
+import Link from "next/link";
 
 const SingleHotelPage = ({ data }) => {
   const { name, description, price, banner, gallery, facilities } = data;
@@ -65,9 +66,11 @@ const SingleHotelPage = ({ data }) => {
           </ul>{" "}
           <div className="text-center">
             {auth ? (
-              <button className="w-80 h-14 rounded-lg bg-blue-500 text-lg mt-8 font-bold ">
-                Book Now
-              </button>
+              <Link href={`/payment/${data?._id}`}>
+                <button className="w-80 h-14 rounded-lg bg-blue-500 text-lg mt-8 font-bold ">
+                  Book Now
+                </button>
+              </Link>
             ) : (
               <button
                 className="w-80 h-14 rounded-lg bg-blue-500 text-lg mt-8 font-bold "
