@@ -3,7 +3,7 @@ import Header1 from "@/components/Header1";
 import SingleHotel from "@/components/SingleHotel";
 import axios from "axios";
 import Head from "next/head";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 export async function getServerSideProps(ctx) {
   console.log("index.jsx", ctx.query);
@@ -22,6 +22,7 @@ export async function getServerSideProps(ctx) {
 const Hotels = ({ hotels }) => {
   const [list, setList] = useState([]);
   const [price, setPrice] = useState(2000);
+  const [checkedList, setCheckedList] = useState([]);
 
   const handlePrice = async (price) => {
     const response = await axios.get(
@@ -32,6 +33,24 @@ const Hotels = ({ hotels }) => {
     setList(response.data);
   };
 
+  const fetchCheckedHotels = async () => {
+    try {
+      const { data } = await axios.get(
+        `http://localhost:3000/api/facilities/search?val=${checkedList}`
+      );
+
+      if (data) {
+        setList(data);
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  useEffect(() => {
+    fetchCheckedHotels();
+  }, [checkedList]);
+
   return (
     <>
       <Head>
@@ -40,7 +59,13 @@ const Hotels = ({ hotels }) => {
       <Header1 />
       <div className="grid grid-cols-12">
         <div className="col-span-2">
-          <Filter handlePrice={handlePrice} price={price} setPrice={setPrice} />
+          <Filter
+            handlePrice={handlePrice}
+            price={price}
+            setPrice={setPrice}
+            checkedList={checkedList}
+            setCheckedList={setCheckedList}
+          />
         </div>
         <div className="col-span-10">
           {" "}

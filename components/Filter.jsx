@@ -2,13 +2,18 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 
-const Filter = ({ price, setPrice, handlePrice }) => {
+const Filter = ({
+  price,
+  setPrice,
+  handlePrice,
+  setCheckedList,
+  checkedList,
+}) => {
   const [list, setList] = useState([]);
 
   const fetchFacilities = async () => {
     try {
       const response = await axios.get(`http://localhost:3000/api/facilities`);
-
       return response.data;
     } catch (error) {
       console.log(error);
@@ -20,7 +25,18 @@ const Filter = ({ price, setPrice, handlePrice }) => {
       console.log(response);
       setList(response);
     });
-  }, []);
+  }, [checkedList]);
+
+  
+
+  const handleCheckList = (e) => {
+    const { value, checked } = e.target;
+    if (checked) {
+      setCheckedList([...checkedList, value]);
+    } else {
+      setCheckedList(checkedList.filter((item) => item !== value));
+    }
+  };
 
   return (
     <>
@@ -49,26 +65,27 @@ const Filter = ({ price, setPrice, handlePrice }) => {
             {" "}
             Search
           </button>
-          {/* {JSON.stringify(price)} */}
         </div>
         <div className="my-10 py-4 ">
           {" "}
           <h3 className="text-3xl font-bold"> Filter By Facilities</h3>
-          <p className="mt-4">
-            {list?.map((listItems) => (
-              <div className="mt-3 items-center">
-                <input type="checkbox" />
-                <label
-                  htmlFor="checkbox"
-                  className=" ml-4 text-xl font-bold pt-5"
-                >
-                  {listItems}
-                </label>
-              </div>
-            ))}
-          </p>
+          {list?.map((listItems) => (
+            <div className="mt-3 items-center" key={listItems}>
+              <input
+                type="checkbox"
+                value={listItems}
+                onChange={handleCheckList}
+              />
+              <label
+                htmlFor="checkbox"
+                className=" ml-4 text-xl font-bold pt-5"
+              >
+                {listItems}
+              </label>
+            </div>
+          ))}
         </div>
-        <div className="my-6py-4 ">
+        <div className="my-6 py-4">
           <h3 className="text-3xl font-bold">Filter By Location</h3>
         </div>
       </div>
