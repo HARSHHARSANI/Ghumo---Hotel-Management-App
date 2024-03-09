@@ -1,6 +1,13 @@
+import axios from "axios";
 import Image from "next/image";
+import { FaWifi } from "react-icons/fa";
+import { MdOutlinePets } from "react-icons/md";
+import { FaPersonSwimming } from "react-icons/fa6";
+import { BiSolidDrink } from "react-icons/bi";
+import { MdSportsCricket } from "react-icons/md";
 
-const SingleHotelPage = () => {
+const SingleHotelPage = ({ data }) => {
+  const { name, description, price, banner, gallery, facilities } = data;
   return (
     <div className="w-7/12 mx-auto">
       <Image
@@ -11,30 +18,31 @@ const SingleHotelPage = () => {
         alt="hotel"
       />
       <div className="">
-        <h3 className="text-3xl font-bold">
-          Lorem ipsum, dolor sit amet consectetur adipisicing elit. Beatae,
-          quia? Quisquam nisi molestias vitae nobis!
-        </h3>
-        <p className="mt-4 text-justify">
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptas
-          voluptatem, corrupti voluptates, hic laudantium debitis saepe est
-          doloribus harum excepturi repellat eum provident. Mollitia laudantium
-          possimus vero? Architecto ullam illum ex praesentium dicta maxime vel
-          sit quaerat sint soluta officiis aut tenetur molestiae perferendis
-          fugiat enim laudantium, quasi nulla eos.
-        </p>{" "}
+        <h3 className="text-3xl font-bold">{name}</h3>
+        <p className="mt-4 text-justify">{description}</p>{" "}
         <div className="text-center">
           <button className="w-80 h-14 rounded-lg bg-red-500 text-lg mt-8 font-bold">
-            Price 4000
+            Rs {price}
           </button>
         </div>
         <p className="font-bold text-3xl mt-8">Facilities : </p>
         <ul className="flex text-xl gap-10 my-5 justify-between">
-          <li>Free Wifi </li>
-          <li> Pet care </li>
-          <li>Swimming pool </li>
-          <li>Resort</li>
-          <li>Cricket</li>
+          <li className="flex gap-4 items-center">
+            Free Wifi <FaWifi />
+          </li>
+          <li className="flex gap-4 items-center">
+            {" "}
+            Pet care <MdOutlinePets />{" "}
+          </li>
+          <li className="flex gap-4 items-center">
+            Swimming pool <FaPersonSwimming />{" "}
+          </li>
+          <li className="flex gap-4 items-center">
+            Resort <BiSolidDrink />
+          </li>
+          <li className="flex gap-4 items-center">
+            Cricket <MdSportsCricket />
+          </li>
         </ul>{" "}
         <div className="text-center">
           {" "}
@@ -46,5 +54,26 @@ const SingleHotelPage = () => {
     </div>
   );
 };
+
+export async function getStaticPaths() {
+  return {
+    paths: [],
+    fallback: false,
+  };
+}
+export async function getStaticProps(ctx) {
+  console.log(ctx.params.id);
+  const hotelId = ctx.params.id;
+  const response = await axios.get(
+    `http://localhost:3000/api/hotels/${hotelId}`
+  );
+
+  const result = response.data;
+  return {
+    props: {
+      data: result,
+    },
+  };
+}
 
 export default SingleHotelPage;

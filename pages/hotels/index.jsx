@@ -3,11 +3,12 @@ import SingleHotel from "@/components/SingleHotel";
 import axios from "axios";
 
 export async function getServerSideProps(ctx) {
-  console.log(ctx.query);
+  console.log("index.jsx", ctx.query);
   const res = await axios.get(
     `http://localhost:3000/api/hotels?location=${ctx.query.location}`
   );
   const data = res.data;
+  console.log("data", data);
   return {
     props: {
       hotels: data,
