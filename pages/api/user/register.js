@@ -32,7 +32,7 @@ export default async function handler(req, res) {
     });
 
     await userNew.save();
-    const token = Jwt.sign({ token: userNew._id }, "SpirderMan", {
+    const token = Jwt.sign({ token: userNew._id }, process.env.JWT_SECRET, {
       expiresIn: "30d",
     });
     return res.status(200).json({

@@ -49,8 +49,8 @@ const Banner = () => {
   }, [showStartDatePicker, showEndDatePicker]);
 
   return (
-    <div className="bg-gradient-to-r from-red-600 to-red-400 h-60">
-      <div className="p-5">
+    <div className="bg-gradient-to-r from-red-600 to-red-400 h-60 h-[340px]">
+      <div className="p-14">
         <h2 className="text-4xl font-bold text-center text-white mb-6">
           Over 157,000 Hotels and Homes across 35 countries
         </h2>

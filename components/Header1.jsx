@@ -29,13 +29,14 @@ const Header1 = () => {
     router.push("/");
   };
   return (
-    <div className=" flex h-24 px-10 border-b-2 border-gray-300  items-center justify-between">
+    <div className=" flex h-32 px-10 border-b-2 border-gray-300  items-center justify-between">
       <Image
         src={`/logo.png`}
         alt="oyologo"
         width={200}
         height={100}
-        className="h-20 w-20 mr-40"
+        className="h-28 w-28 mr-40"
+        onClick={() => router.push("/")}
       />
       <div className="border-r-2 border-gray-300 h-full flex">
         {" "}

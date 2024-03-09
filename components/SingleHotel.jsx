@@ -41,7 +41,7 @@ const SingleHotel = ({ hotel }) => {
                     <div className="flex items-center gap-2">
                       {facility?.name === "Gym" ? (
                         <>
-                          <CgGym className="mr-2" /> {facility?.name} 
+                          <CgGym className="mr-2" /> {facility?.name}
                         </>
                       ) : (
                         <>
@@ -64,6 +64,9 @@ const SingleHotel = ({ hotel }) => {
             >
               See Details
             </Link>
+          </div>
+          <div className="text-xl font-bold mt-4 flex">
+            Location :<div className="ml-4"> {hotel.location}</div>
           </div>
         </div>
       </div>

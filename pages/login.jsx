@@ -29,8 +29,8 @@ const Login = () => {
     });
 
     if (response?.data) {
-      Cookies.set("user", response.data.token);
-      router.push("/");
+      Cookies.set("user", response.data.token, { expires: 7 });
+      router.back();
     }
   };
 
@@ -54,8 +54,9 @@ const Login = () => {
             src={"/logo.png"}
             width={200}
             height={200}
-            className="h-24 w-40 ml-10 "
+            className="h-24 w-32 ml-10 "
             alt="logo"
+            onClick={() => router.push("/")}
           />
         </div>
         <div

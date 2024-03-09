@@ -1,11 +1,12 @@
 import Header1 from "@/components/Header1";
 import SingleHotel from "@/components/SingleHotel";
 import axios from "axios";
+import Head from "next/head";
 
 export async function getServerSideProps(ctx) {
   console.log("index.jsx", ctx.query);
   const res = await axios.get(
-    `http://localhost:3000/api/hotels?location=${ctx.query.location}`
+    `${process.env.NEXTJS_APP_API}/api/hotels?location=${ctx.query.location}`
   );
   const data = res.data;
   console.log("data", data);
@@ -19,6 +20,9 @@ export async function getServerSideProps(ctx) {
 const Hotels = ({ hotels }) => {
   return (
     <>
+      <Head>
+        <title>All Hotels</title>
+      </Head>
       <Header1 />
       {hotels
         ? hotels.map((hotel) => (
