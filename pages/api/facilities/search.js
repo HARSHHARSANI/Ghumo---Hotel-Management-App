@@ -6,7 +6,7 @@ export default async function (req, res) {
     if (req.method === "GET") {
       connectDB();
       const key = req.query.val;
-      console.log(key);
+      // console.log(key);
       const hotels = await hotelModel.find({ "facilities.name": { $in: key } });
       return res.status(200).json(hotels);
     }

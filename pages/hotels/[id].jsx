@@ -93,7 +93,7 @@ export async function getStaticPaths() {
   };
 }
 export async function getStaticProps(ctx) {
-  console.log(ctx.params.id);
+  // console.log(ctx.params.id);
   const hotelId = ctx.params.id;
   const response = await axios.get(
     `${process.env.NEXTJS_APP_API}/api/hotels/${hotelId}`

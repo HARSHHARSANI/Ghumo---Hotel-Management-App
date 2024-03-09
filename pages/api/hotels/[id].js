@@ -5,7 +5,7 @@ export default async function (req, res) {
   try {
     if (req.method === "GET") {
       connectDB();
-      console.log("request params", req.query.id);
+      // console.log("request params", req.query.id);
       if (req.query.id) {
         const hotel = await hotelModel.findById(req.query.id);
 

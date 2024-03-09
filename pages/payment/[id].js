@@ -11,7 +11,7 @@ const Payments = () => {
       id: router.query?.id,
     };
     const { data } = await axios.post("/api/razorpay", val);
-    console.log(data);
+    // console.log(data);
 
     const options = {
       key: process.env.RAZORPAY_KEY,

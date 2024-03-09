@@ -32,7 +32,7 @@ export default async function (req, res) {
 
     try {
       const result = await razorpay.orders.create(options);
-      console.log(result);
+      // console.log(result);
       res.status(201).json({
         id: result.id,
         currency: result.currency,

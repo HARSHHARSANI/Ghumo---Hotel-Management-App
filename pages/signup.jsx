@@ -20,7 +20,7 @@ const Login = () => {
       return;
     }
     setLogin(false);
-    console.log(name, email, password);
+    // console.log(name, email, password);
 
     const response = await axios.post("/api/user/register", {
       name,

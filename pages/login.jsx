@@ -19,7 +19,7 @@ const Login = () => {
       return;
     }
     setLogin(true);
-    console.log(email, password);
+    // console.log(email, password);
 
     try {
       const response = await axios.post("/api/user/login", {

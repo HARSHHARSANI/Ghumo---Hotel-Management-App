@@ -24,7 +24,7 @@ const Filter = ({
 
   useEffect(() => {
     fetchFacilities().then((response) => {
-      console.log(response);
+      // console.log(response);
       setList(response);
     });
   }, [checkedList]);

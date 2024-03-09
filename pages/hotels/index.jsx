@@ -6,12 +6,12 @@ import Head from "next/head";
 import { useEffect, useState } from "react";
 
 export async function getServerSideProps(ctx) {
-  console.log("index.jsx", ctx.query);
+  // console.log("index.jsx", ctx.query);
   const res = await axios.get(
     `${process.env.NEXTJS_APP_API}/api/hotels?location=${ctx.query.location}`
   );
   const data = res.data;
-  console.log("data", data);
+  // console.log("data", data);
   return {
     props: {
       hotels: data,
@@ -29,7 +29,7 @@ const Hotels = ({ hotels }) => {
       `${process.env.NEXTJS_APP_API}/api/facilities/range?price=${price}`
     );
 
-    console.log(response.data);
+    // console.log(response.data);
     setList(response.data);
   };
 
