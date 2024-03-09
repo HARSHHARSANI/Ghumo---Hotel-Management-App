@@ -13,7 +13,9 @@ const Filter = ({
 
   const fetchFacilities = async () => {
     try {
-      const response = await axios.get(`http://localhost:3000/api/facilities`);
+      const response = await axios.get(
+        `${process.env.NEXTJS_APP_API}/api/facilities`
+      );
       return response.data;
     } catch (error) {
       console.log(error);
@@ -26,8 +28,6 @@ const Filter = ({
       setList(response);
     });
   }, [checkedList]);
-
-  
 
   const handleCheckList = (e) => {
     const { value, checked } = e.target;

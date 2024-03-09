@@ -26,7 +26,7 @@ const Hotels = ({ hotels }) => {
 
   const handlePrice = async (price) => {
     const response = await axios.get(
-      `http://localhost:3000/api/facilities/range?price=${price}`
+      `${process.env.NEXTJS_APP_API}/api/facilities/range?price=${price}`
     );
 
     console.log(response.data);
@@ -36,7 +36,7 @@ const Hotels = ({ hotels }) => {
   const fetchCheckedHotels = async () => {
     try {
       const { data } = await axios.get(
-        `http://localhost:3000/api/facilities/search?val=${checkedList}`
+        `${process.env.NEXTJS_APP_API}/api/facilities/search?val=${checkedList}`
       );
 
       if (data) {
