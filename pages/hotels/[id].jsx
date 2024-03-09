@@ -11,7 +11,7 @@ const SingleHotelPage = ({ data }) => {
   return (
     <div className="w-7/12 mx-auto">
       <Image
-        src={"/hotel.jpg"}
+        src={data?.gallery[0]}
         width={2000}
         height={2000}
         className="w-full h-96 mb-5 mx-auto mt-10 "

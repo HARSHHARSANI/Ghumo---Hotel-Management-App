@@ -5,6 +5,11 @@ import Block from "./Block";
 import Link from "next/link";
 import Cookies from "js-cookie";
 import { useRouter } from "next/router";
+import { FaRegBuilding } from "react-icons/fa";
+import { MdOutlineBusiness } from "react-icons/md";
+import { IoPeopleSharp } from "react-icons/io5";
+import { IoCall } from "react-icons/io5";
+
 const Header1 = () => {
   const [auth, setAuth] = useState(false); // State to manage authentication
 
@@ -35,12 +40,25 @@ const Header1 = () => {
       <div className="border-r-2 border-gray-300 h-full flex">
         {" "}
         <Block
+          img={<IoPeopleSharp />}
           title={"Become a Member"}
           para={"Additional 10% off on stays."}
         />
-        <Block title={"Oyo for Business"} para={"Trusted by 5000 cooperates"} />
-        <Block title={"List Your Property"} para={"Start Earning in 30 mins"} />
-        <Block title={"0124-6201611"} para={"Call us to Book Now"} />
+        <Block
+          img={<MdOutlineBusiness />}
+          title={"Oyo for Business"}
+          para={"Trusted by 5000 cooperates"}
+        />
+        <Block
+          img={<FaRegBuilding />}
+          title={"List Your Property"}
+          para={"Start Earning in 30 mins"}
+        />
+        <Block
+          img={<IoCall />}
+          title={"0124-6201611"}
+          para={"Call us to Book Now"}
+        />
         <div className="flex items-center px-3 ">
           <Image
             src={`/profilepic.jpg`}

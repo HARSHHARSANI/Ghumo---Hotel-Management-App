@@ -41,7 +41,7 @@ const SingleHotel = ({ hotel }) => {
                     <div className="flex items-center gap-2">
                       {facility?.name === "Gym" ? (
                         <>
-                          <CgGym className="mr-2" /> {facility?.name}
+                          <CgGym className="mr-2" /> {facility?.name} 
                         </>
                       ) : (
                         <>
