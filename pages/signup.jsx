@@ -69,7 +69,7 @@ const Login = () => {
       <div className="absolute top-60 left-0 w-full text-white ml-28 mt-8 z-30 flex">
         <div className="flex flex-col">
           <h1 className="text-white font-bold text-6xl">
-            There's a smarter way to <br />
+            There a smarter way to <br />
             OYO around
           </h1>
           <p className="font-bold mt-4 text-xl">
