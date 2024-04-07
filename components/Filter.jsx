@@ -13,9 +13,7 @@ const Filter = ({
 
   const fetchFacilities = async () => {
     try {
-      const response = await axios.get(
-        `${process.env.NEXTJS_APP_API}/api/facilities`
-      );
+      const response = await axios.get(`/api/facilities`);
       return response.data;
     } catch (error) {
       console.log(error);

@@ -5,6 +5,8 @@ import axios from "axios";
 import Head from "next/head";
 import { useEffect, useState } from "react";
 
+console.log("hi", process.env.NEXTJS_APP_API);
+
 export async function getServerSideProps(ctx) {
   // console.log("index.jsx", ctx.query);
   const res = await axios.get(
@@ -36,7 +38,7 @@ const Hotels = ({ hotels }) => {
   const fetchCheckedHotels = async () => {
     try {
       const { data } = await axios.get(
-        `${process.env.NEXTJS_APP_API}/api/facilities/search?val=${checkedList}`
+        `/api/facilities/search?val=${checkedList}`
       );
 
       if (data) {
